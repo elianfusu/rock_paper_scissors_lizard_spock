@@ -2,6 +2,7 @@
 function player(name, group) {
   this.name = name;
   this.group = group;
+  this.nrWins = 0;
   this.history = [];
 
   this.addToHistory = function(opponent, result) {
@@ -43,8 +44,10 @@ function session(opponent1, opponent2) {
 
     var winnerID = getWinnerID (op1Choice, op2Choice);
     if (winnerID === 1) {
+      opponent1.nrWins++;
       winner = opponent1;
     } else if (winnerID === 2) {
+      opponent2.nrWins++;
       winner = opponent2;
     }
 

@@ -1,0 +1,75 @@
+h1 {
+  font-family: Arial;
+  color: #216869;
+}
+
+h2 {
+  color: #ff6663;
+  font-family: Arial;
+  margin: 2em;
+}
+
+h3 {
+  font-family: Arial;
+  color: #4e87ec;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  align: center;
+  margin: 0 auto;
+}
+
+.grid {
+  flex: 1 auto 33.333%;
+  flex-direction: row;
+}
+
+.group0, .group1, .group2{
+  background: green;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.group0 > h3, .group1 > h3, .group2 > h3{
+  cursor: pointer;
+}
+.group0 {
+  background: #60d394;
+}
+
+.group1 {
+  background: #b5ffe1;
+}
+
+.group2 {
+  background: #aaf683;
+}
+
+.title {
+  font-size: 3em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #456990;
+}
+
+.winner-button {
+  font-size: 1em;
+  font-family: Arial;
+  padding: 1em 2em;
+  margin-top: 1em;
+  background-color: #bfd7ea;
+  color: #5bc0eb;
+  border: solid 1px #5bc0eb;
+  cursor: pointer;
+}
+
+.winner-button:hover {
+  background-color: #5bc0eb;
+  color: #bdf7ea;
+}

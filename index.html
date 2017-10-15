@@ -5,8 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>RPSLS</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <div class="container">
+    <h1 class="title"> Rock Paper Scissors Lizard Spock </h1>
+    <h1>The tournament winner is: </h1>
+    <button class="winner-button" type="button" name="button" onclick="playTournament()">Get Tournament Winner</button>
+    <h2 id="winner"></h2>
+    <h1>Statistics:</h1>
+  </div>
+
+  <div class="container grid">
+    <div class="group0">
+      <h2>Group 0</h2>
+      <h3 class="group0--player0" onclick="getStats('group0', 'player0')">group0_player0</h3>
+      <h3 class="group0--player1" onclick="getStats('group0', 'player1')">group0_player1</h3>
+      <h3 class="group0--player2" onclick="getStats('group0', 'player2')">group0_player2</h3>
+    </div>
+    <div class="group1">
+      <h2>Group 1</h2>
+      <h3 class="group1--player0" onclick="getStats('group1', 'player0')">group1_player0</h3>
+      <h3 class="group1--player1" onclick="getStats('group1', 'player1')">group1_player1</h3>
+      <h3 class="group1--player2" onclick="getStats('group1', 'player2')">group1_player2</h3>
+    </div>
+    <div class="group2">
+      <h2>Group 2</h2>
+      <h3 class="group2--player0" onclick="getStats('group2', 'player0')">group2_player0</h3>
+      <h3 class="group2--player1" onclick="getStats('group2', 'player1')">group2_player1</h3>
+      <h3 class="group2--player2" onclick="getStats('group2', 'player2')">group2_player2</h3>
+    </div>
+  </div>
+  <div class="container">
+    <p id="stats">
+
+    </p>
+  </div>
 
   <script src="js/objects.js" charset="utf-8"></script>
   <script src="js/utils.js" charset="utf-8"></script>
