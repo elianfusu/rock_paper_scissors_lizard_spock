@@ -8,12 +8,25 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
   <div class="container">
     <h1 class="title"> Rock Paper Scissors Lizard Spock </h1>
-    <h1>The tournament winner is: </h1>
-    <button class="winner-button" type="button" name="button" onclick="playTournament()">Get Tournament Winner</button>
-    <h2 id="winner"></h2>
-    <h1>Statistics:</h1>
+  </div>
+
+  <div class="container grid">
+    <div class="start-game col1--2">
+
+      <h1>The tournament winner is: </h1>
+      <button class="winner-button" type="button" name="button" onclick="playTournament()">Get Tournament Winner</button>
+      <h2 id="winner"></h2>
+    </div>
+    <div class="game-info col1--2">
+      <pre id="logshow"></pre>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>History:</h1>
   </div>
 
   <div class="container grid">
@@ -40,6 +53,14 @@
     <p id="stats">
 
     </p>
+  </div>
+  <div class="container">
+    <h1>The player with the best winning rate is: </h1>
+    <button class="winner-button" type="button" name="button" onclick="getHighestWRate()">Get the player with the best WIN rate</button>
+    <h2 id="best-winning-rate"></h2>
+    <h1>The player with the worst winning rate is: </h1>
+    <button class="winner-button" type="button" name="button" onclick="getLowestWRate()">Get the player with the worst WIN rate</button>
+    <h2 id="worst-winning-rate"></h2>
   </div>
 
   <script src="js/objects.js" charset="utf-8"></script>

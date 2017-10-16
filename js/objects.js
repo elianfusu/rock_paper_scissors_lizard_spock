@@ -27,38 +27,30 @@ function session(opponent1, opponent2) {
     });
   }
 
-  this.playSession = function() {
-    do {
-      var op1Choice = choices[Math.floor(Math.random() * 5)];
-      var op2Choice = choices[Math.floor(Math.random() * 5)];
+  this.playSession = function(opponent1, opponent2, group, matchNumber) {
 
-      if (op1Choice.name === op2Choice.name) {
-        this.addToHistory('Deuce');
-        opponent1.addToHistory(opponent2, 'Deuce');
-        opponent2.addToHistory(opponent1, 'Dence');
+    var nrWinsOp1 = 0;
+    var nrWinsOp2 = 0;
+
+    while (nrWinsOp1 < 2 && nrWinsOp2 < 2) {
+
+      var winner = playMatch(opponent1, opponent2);
+      if (winner.name === opponent1.name) {
+        nrWinsOp1++;
+      } else {
+        nrWinsOp2++;
       }
     }
-    while (op1Choice.name === op2Choice.name)
 
-    console.log(op1Choice.name + " vs " + op2Choice.name);
-
-    var winnerID = getWinnerID (op1Choice, op2Choice);
-    if (winnerID === 1) {
-      opponent1.nrWins++;
-      winner = opponent1;
-    } else if (winnerID === 2) {
-      opponent2.nrWins++;
-      winner = opponent2;
+    if (nrWinsOp1 > nrWinsOp2) {
+      group.addToHistory(opponent1, opponent2, opponent1);
+      return opponent1;
+    } else {
+      group.addToHistory(opponent1, opponent2, opponent2);
+      return opponent2;
     }
-
-    opponent1.addToHistory(opponent2, winner.name);
-    opponent2.addToHistory(opponent1, winner.name);
-    this.addToHistory(winner.name);
-
-    return winner;
-  }
+  };
 }
-
 
 /* Group object */
 function group(name) {

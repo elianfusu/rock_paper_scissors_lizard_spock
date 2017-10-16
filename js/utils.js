@@ -47,57 +47,70 @@ function playChampionship(group) {
   }
   while(opponent1.name === opponent2.name)
 
-  var firstMatchWinner = playMatch(opponent1, opponent2, group, "match0");
-  console.log("First match winner is " + firstMatchWinner.name);
+  log += "#-- First match of group " + group.name + " --#\n";
+  log += " --- " + opponent1.name + " vs " + opponent2.name + " ---\n";
+
+  var session0 = new session(opponent1, opponent2);
+  var firstSessionWinner = session0.playSession(opponent1, opponent2, group, "session0");
+  log += "* First session winner is " + firstSessionWinner.name + " *\n";
 
   for (var i = 0; i < 3; i++) {
-    if (players[i].name !== firstMatchWinner.name) {
+    if (players[i].name !== firstSessionWinner.name) {
       opponent1 = players[i];
       break;
     }
   }
 
   for (var i = 0; i < 3; i++) {
-    if (players[i].name !== firstMatchWinner.name && players[i].name !== opponent1.name) {
+    if (players[i].name !== firstSessionWinner.name && players[i].name !== opponent1.name) {
       opponent2 = players[i];
       break;
     }
   }
 
-  var secondMatchWinner = playMatch(opponent1, opponent2, group, "match1");
-  console.log("Second match winner is " + secondMatchWinner.name);
+  log += "#-- Second match of group " + group.name + " --#\n";
+  log += " --- " + opponent1.name + " vs " + opponent2.name + " ---\n";
+  var session1 = new session(opponent1, opponent2);
+  var secondSessionWinner = session1.playSession(opponent1, opponent2, group, "session1");
+  log += "* Second session winner is " + secondSessionWinner.name + " *\n";
 
-  var groupWinner = playMatch(firstMatchWinner, secondMatchWinner, group, "match2");
-  console.log("Group winner is " + groupWinner.name);
+  log += "#-- Third match of group " + group.name + " --#\n";
+  log += " --- " + firstSessionWinner.name + " vs " + secondSessionWinner.name + " ---\n";
+  var session2 = new session(firstSessionWinner, secondSessionWinner);
+  var groupWinner = session2.playSession(firstSessionWinner, secondSessionWinner, group, "session2");
+  log += "** Group winner is " + groupWinner.name + " **\n";
 
   return groupWinner;
 }
 
 /* Used for obtaining the match winner */
-function playMatch(opponent1, opponent2, group, matchNumber) {
+this.playMatch = function(opponent1, opponent2) {
+  do {
+    var op1Choice = choices[Math.floor(Math.random() * 5)];
+    var op2Choice = choices[Math.floor(Math.random() * 5)];
 
-  console.log('Playing ' + opponent1.name + ' vs ' + opponent2.name);
+    log += opponent1.name + " picks " + op1Choice.name + ", " + opponent2.name + " picks " + op2Choice.name + "\n";
 
-  var nrWinsOp1 = 0;
-  var nrWinsOp2 = 0;
-
-  while (nrWinsOp1 < 2 && nrWinsOp2 < 2) {
-    var session1 = new session(opponent1, opponent2);
-    group.sessions[matchNumber].push(session);
-
-    var winner = session1.playSession(opponent1, opponent2);
-    if (winner.name === opponent1.name) {
-      nrWinsOp1++;
-    } else {
-      nrWinsOp2++;
+    if (op1Choice.name === op2Choice.name) {
+      opponent1.addToHistory(opponent2, 'Deuce');
+      opponent2.addToHistory(opponent1, 'Dence');
     }
   }
+  while (op1Choice.name === op2Choice.name)
 
-  if (nrWinsOp1 > nrWinsOp2) {
-    group.addToHistory(opponent1, opponent2, opponent1);
-    return opponent1;
-  } else {
-    group.addToHistory(opponent1, opponent2, opponent2);
-    return opponent2;
+  var winnerID = getWinnerID (op1Choice, op2Choice);
+  if (winnerID === 1) {
+    opponent1.nrWins++;
+    log += opponent1.name + " wins\n";
+    winner = opponent1;
+  } else if (winnerID === 2) {
+    opponent2.nrWins++;
+    log += opponent2.name + " wins\n";
+    winner = opponent2;
   }
+
+  opponent1.addToHistory(opponent2, winner.name);
+  opponent2.addToHistory(opponent1, winner.name);
+
+  return winner;
 }

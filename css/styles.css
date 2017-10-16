@@ -16,15 +16,31 @@ h3 {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 80%;
   align: center;
   margin: 0 auto;
 }
 
 .grid {
-  flex: 1 auto 33.333%;
   flex-direction: row;
+}
+
+.col1--3 {
+  flex-basis: 33.333%;
+}
+
+.col1--2 {
+  flex-basis: 50%;
+}
+
+.game-info {
+  background: #b5ffe1;
+  display: flex;
+  flex: 1;
+  height: 300px;
+  overflow: scroll;
+  flex-direction: column;
+
 }
 
 .group0, .group1, .group2{
@@ -56,6 +72,7 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #456990;
+  padding-bottom: 1.2em;
 }
 
 .winner-button {
